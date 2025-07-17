@@ -34,6 +34,7 @@ public class ClienteService {
             Cliente cliente = optionalCliente.get();
 
             cliente.setCliNome(dto.getCliNome());
+            cliente.setCliCpf(dto.getCliCpf());  // Atribuindo o CPF
 
             // Atualiza ou cria contato
             Contato contato = cliente.getContatos().isEmpty() ? new Contato() : cliente.getContatos().get(0);
@@ -88,6 +89,7 @@ public class ClienteService {
     private Cliente fromDTO(ClienteDTO dto) {
         Cliente cliente = new Cliente();
         cliente.setCliNome(dto.getCliNome());
+        cliente.setCliCpf(dto.getCliCpf());  // Atribuindo o CPF
 
         Contato contato = new Contato();
         contato.setConCelular(dto.getConCelular());
@@ -112,6 +114,7 @@ public class ClienteService {
         ClienteDTO dto = new ClienteDTO();
         dto.setCliId(cliente.getCliId());
         dto.setCliNome(cliente.getCliNome());
+        dto.setCliCpf(cliente.getCliCpf());  // Incluindo CPF no DTO
 
         if (!cliente.getContatos().isEmpty()) {
             Contato contato = cliente.getContatos().get(0);
@@ -120,7 +123,8 @@ public class ClienteService {
             dto.setConEmail(contato.getConEmail());
         }
 
-        if (!cliente.getEnderecos().isEmpty()) {            Endereco endereco = cliente.getEnderecos().get(0);
+        if (!cliente.getEnderecos().isEmpty()) {
+            Endereco endereco = cliente.getEnderecos().get(0);
             dto.setEndRua(endereco.getEndRua());
             dto.setEndNumero(endereco.getEndNumero());
             dto.setEndCidade(endereco.getEndCidade());
